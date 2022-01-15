@@ -51,5 +51,4 @@ Rotation:
 	OB' = R * (OB - OC) + OC
 	R est matrice
 
-Aire d'un polygone convexe : 
-	https://en.wikipedia.org/wiki/Shoelace_formula
+Aire d'un polygone convexe : Voir poly
