@@ -11,6 +11,10 @@ int main()
 
 	cout << (string)F << endl;
 
+	F.accept(V);
+
+	delete V;
+
 	return 0;
 }
 

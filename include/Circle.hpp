@@ -11,15 +11,15 @@ public:
 		add_point(centre);
 	}
 	
-	Vecteur2D get_centre() const {
+	Vecteur2D get_center() const {
 		return point_list[0];
 	}
 
 	void accept(VisitorDraw *V) const override { V->visitCircle(*this); }
 	
 	operator std::string() const {
-		std::string res("Cercle : ");
-		res += (std::string)get_centre();
+		std::string res("Circle : ");
+		res += (std::string)get_center();
 		res += ", ";
 		res += to_string(rayon);
 		res += ", Color : ";

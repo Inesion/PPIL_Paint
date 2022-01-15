@@ -14,16 +14,16 @@ public:
 	VisitorDrawNetwork() {}
 	
 	void visitCircle(const Circle &C) const override {
-		cout << (string)C;
+		std::cout << "Visiting Circle" << std::endl;
 	}
 	void visitPolygon(const Polygon &P) const override {
-
+		std::cout << "Visiting Polygon" << std::endl;
 	}
 	void visitSegment(const Segment &S) const override {
-
+		std::cout << "Visiting Segment" << std::endl;
 	}
 	void visitTriangle(const Triangle &T) const override {
-
+		std::cout << "Visiting Triangle" << std::endl;
 	}
 };
 
