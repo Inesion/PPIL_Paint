@@ -1,0 +1,55 @@
+?? QUESTION ??
+
+? Transform dans vecteur //ok
+? Multiple opérateurs matrice, héritage avec MatriceRotation //non
+? Implémentation de Matrice et Vecteur.cpp qui inclut matrice, bizarre mais fonctionne sinon incomplete type
+? Includes dans Visiteur Concret + forward declaration dans Visiteur
+? Organisation du projet (sub folder dans src, include etc..)	//sous-dossier reseau par exemple, important de faire des tests
+? Passer toutes les classes formes en fils de Polygone, toutes les formes étant des polygone particulier, utile pour to string, évite répétition
+	==> Meilleure idée, passer toutes les classes en fils de Forme, Forme ayant une liste de points
+? Code dans les hpp //ok
+? Repere sous quelle forme //2Coins, vecteur2d
+
+
+<> TODO <>
+
+Ecrire fonction det
+Cleanup all functions name, stay consistent
+
+
+!! INFOS !!
+
+Les tranformations ne s'occupent pas des repères, uniquement utilisé pour dessiner
+Le prof donnera points sur un repere quelquonque
+
+Soit cote java, libertée de modifier taille fenetre
+Soit cote cpp, 
+
+Toutes opérations géométriques sont effectuées sur le client, le serveur ne sert qu'à dessiner
+
+Translation :
+	Définie par un vecteur de translation
+	(OA->)' = (OA->) + (u->)
+
+Homotétie (zoom) :
+	Attention : pour le cercle, le rayon est aussi multiplié par k
+	ATTENTION : si k est négatif (k = -1 par ex), on retourne toute l'image, donc important d'utiliser ABS(k * rayon) pour le cercle, chercher pour le reste
+	Segment AB, point C est invariant
+
+	CO + CB' = 2CB
+	OB' = 2CB - CO
+	OB' = 2CB + OC
+	OB' = 2(CO + OB) + OC
+	OB' = 2(-OC + OB) + OC
+	OB' = 2(OB - OC) + OC
+	OB' = k * (OB - OC) + OC
+	OB' = k * OB - k * OC + OC
+	OB' = kOB + (1 - k)OC
+
+Rotation:
+	Matrice de rotation, donc classe Matrice
+	OB' = R * (OB - OC) + OC
+	R est matrice
+
+Aire d'un polygone convexe : 
+	https://en.wikipedia.org/wiki/Shoelace_formula
