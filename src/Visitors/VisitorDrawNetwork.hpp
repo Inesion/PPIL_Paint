@@ -2,10 +2,10 @@
 #define _VISITEURDESSIN_HPP_
 
 #include "VisitorDraw.hpp"
-#include "Circle.hpp"
-#include "Triangle.hpp"
-#include "Segment.hpp"
-#include "Polygon.hpp"
+#include "Shapes/Circle.hpp"
+#include "Shapes/Triangle.hpp"
+#include "Shapes/Segment.hpp"
+#include "Shapes/Polygon.hpp"
 #include <iostream>
 
 

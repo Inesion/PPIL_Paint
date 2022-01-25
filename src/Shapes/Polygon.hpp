@@ -2,7 +2,6 @@
 #define _POLYGON_HPP_
 
 #include "Shape.hpp"
-#include <vector>
 
 class Polygon : public Shape {
 public:

@@ -1,8 +1,8 @@
 #ifndef _SHAPE_HPP_
 #define _SHAPE_HPP_
 
-#include "Vecteur2D.hpp"
-#include "VisitorDraw.hpp"
+#include "Utils/Vecteur2D.hpp"
+#include "Visitors/VisitorDraw.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -29,7 +29,7 @@ public:
 	void set_color(const Color C) { color = C; }
 
 	virtual double get_area() const {	//not good, must use other formula. Also find center of gravity, more complex but result less likely to suffer from imprecision
-		double SL1, SL2 = 0;
+		/*double SL1 = 0, SL2 = 0;
 		int i;
 
 		if (point_list.size() < 3)
@@ -45,7 +45,8 @@ public:
 		for (i = point_list.size() - 1; i >= 0; i--)
 			SL2 += point_list[i].x * point_list[i - 1].y;
 
-		return abs(SL1 - SL2);
+		return abs(SL1 - SL2);*/
+		return 0;
 	}
 
 	std::string to_string_points() const {
