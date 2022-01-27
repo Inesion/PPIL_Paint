@@ -2,11 +2,12 @@
 #define _SHAPE_HPP_
 
 #include "Utils/Vecteur2D.hpp"
-#include "Visitors/VisitorDraw.hpp"
+#include "Visitors/VisitorShape.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
 #include <ostream>
+#include <fstream>
 
 enum Color { BLACK, BLUE, RED, GREEN, YELLOW, CYAN };
 
@@ -14,15 +15,16 @@ class Shape {
 protected:
 	Color color;
 	std::vector<Vecteur2D> point_list;
+	char shape_prefix;
 
 	void add_point(const Vecteur2D &P) { point_list.push_back(P); }
 
 public:
-	Shape(Color C) : color(C) {}
-	Shape(std::vector<Vecteur2D> point_list, Color C) : point_list(point_list), color(C) {}
+	Shape(const char shape_prefix, const Color C) : color(C), shape_prefix(shape_prefix) {}
+	Shape(const char shape_prefix, const Color C, const std::vector<Vecteur2D> point_list) : point_list(point_list), color(C) {}
 	virtual ~Shape() {}
 
-	virtual void accept(VisitorDraw *V) const = 0;
+	virtual void accept(VisitorShape *V) const = 0;
 	virtual operator std::string() const = 0;
 
 	Color get_color() const { return color; }
@@ -61,6 +63,20 @@ public:
 
 		return res;
 	}
+
+	std::ostream& serialize(std::ostream& os) const {
+		os.put(shape_prefix);
+		os.write(reinterpret_cast<const char*>(&color), sizeof color);
+		serialize_custom_attributes(os);
+
+		for (auto i = 0; i < point_list.size(); i++) {
+			os.write(reinterpret_cast<const char*>(&point_list[i]), sizeof point_list[i]);
+		}
+
+		return os;
+	}
+
+	virtual std::ostream& serialize_custom_attributes(std::ostream& os) const { return os; }
 };
 
 std::ostream& operator <<(std::ostream &os, const Shape &F) {

@@ -7,7 +7,7 @@ class Circle : public Shape {
 private:
 	double rayon;
 public:
-	Circle(Vecteur2D centre, double rayon, Color Col) : rayon(rayon), Shape(Col) {
+	Circle(const Vecteur2D centre, const double rayon, const Color Col) : rayon(rayon), Shape('C', Col) {
 		add_point(centre);
 	}
 	
@@ -15,7 +15,9 @@ public:
 		return point_list[0];
 	}
 
-	void accept(VisitorDraw *V) const override { V->visitCircle(*this); }
+	void accept(VisitorShape *V) const override { V->visitCircle(*this); }
+
+	std::ostream& serialize_custom_attributes(std::ostream& os) const { return os.write(reinterpret_cast<const char*>(&rayon), sizeof rayon); }
 	
 	operator std::string() const {
 		std::string res("Circle : ");

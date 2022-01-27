@@ -5,11 +5,11 @@
 
 class Polygon : public Shape {
 public:
-	Polygon(Color Col) : Shape(Col) {}
+	Polygon(const Color Col) : Shape('P', Col) {}
 	
-	Polygon(const std::vector<Vecteur2D> point_list, Color C) : Shape(point_list, C) {}
+	Polygon(const std::vector<Vecteur2D> point_list, const Color C) : Shape('P', C, point_list) {}
 
-	void accept(VisitorDraw *V) const override { V->visitPolygon(*this); }
+	void accept(VisitorShape *V) const override { V->visitPolygon(*this); }
 
 	operator std::string() const {
 		std::string res("Polygon : ");

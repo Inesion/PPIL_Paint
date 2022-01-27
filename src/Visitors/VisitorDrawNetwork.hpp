@@ -1,7 +1,7 @@
-#ifndef _VISITEURDESSIN_HPP_
-#define _VISITEURDESSIN_HPP_
+#ifndef _VISITORDRAWNETWORK_HPP_
+#define _VISITORDRAWNETWORK_HPP_
 
-#include "VisitorDraw.hpp"
+#include "VisitorShape.hpp"
 #include "Shapes/Circle.hpp"
 #include "Shapes/Triangle.hpp"
 #include "Shapes/Segment.hpp"
@@ -9,22 +9,22 @@
 #include <iostream>
 
 
-class VisitorDrawNetwork : public VisitorDraw {
+class VisitorDrawNetwork : public VisitorShape {
 public:
-	VisitorDrawNetwork() {}
+	VisitorDrawNetwork() { description = "Drawing over the network : " }
 	
-	void visitCircle(const Circle &C) const override {
-		std::cout << "Visiting Circle" << std::endl;
+	void visitCircle(const Circle &C) override {
+		std::cout << description << C << std::endl;
 	}
-	void visitPolygon(const Polygon &P) const override {
-		std::cout << "Visiting Polygon" << std::endl;
+	void visitPolygon(const Polygon &P) override {
+		std::cout << description << P << std::endl;
 	}
-	void visitSegment(const Segment &S) const override {
-		std::cout << "Visiting Segment" << std::endl;
+	void visitSegment(const Segment &S) override {
+		std::cout << description << S << std::endl;
 	}
-	void visitTriangle(const Triangle &T) const override {
-		std::cout << "Visiting Triangle" << std::endl;
+	void visitTriangle(const Triangle &T) override {
+		std::cout << description << T << std::endl;
 	}
 };
 
-#endif //_VISITEURDESSIN_HPP_
+#endif //_VISITORDRAWNETWORK_HPP_

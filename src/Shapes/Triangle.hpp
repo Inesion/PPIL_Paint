@@ -5,13 +5,13 @@
 
 class Triangle : public Shape {
 public:
-	Triangle(Vecteur2D A, Vecteur2D B, Vecteur2D C, Color Col) : Shape(Col) {
+	Triangle(Vecteur2D A, Vecteur2D B, Vecteur2D C, Color Col) : Shape('T', Col) {
 		add_point(A);
 		add_point(B);
 		add_point(C);
 	}
 
-	void accept(VisitorDraw *V) const override { V->visitTriangle(*this); }
+	void accept(VisitorShape *V) const override { V->visitTriangle(*this); }
 
 	operator std::string() const {
 		std::string res("Triangle : ");
