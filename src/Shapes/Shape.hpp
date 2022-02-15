@@ -30,6 +30,13 @@ public:
 	Color get_color() const { return color; }
 	void set_color(const Color C) { color = C; }
 
+	int serialize(char buffer[]) const;
+	static Shape* deserialize(const char buffer[], const int size);
+
+	int serialize(std::ostream &os) const;	// dabord nb octet puis data
+	static Shape* deserialize(std::istream &is);
+
+
 	virtual double get_area() const {	//not good, must use other formula. Also find center of gravity, more complex but result less likely to suffer from imprecision
 		/*double SL1 = 0, SL2 = 0;
 		int i;
@@ -56,7 +63,7 @@ public:
 
 		for (auto i = 0; i < point_list.size() - 1; i++) {
 			res += (std::string)point_list[i];
-			res += ", ";
+			res += " ";
 		}
 
 		res += (std::string)point_list.back();
@@ -67,11 +74,13 @@ public:
 	std::ostream& serialize(std::ostream& os) const {
 		os.put(shape_prefix);
 		os.write(reinterpret_cast<const char*>(&color), sizeof color);
-		serialize_custom_attributes(os);
+		os.put(point_list.size());
 
 		for (auto i = 0; i < point_list.size(); i++) {
 			os.write(reinterpret_cast<const char*>(&point_list[i]), sizeof point_list[i]);
 		}
+
+		serialize_custom_attributes(os);
 
 		return os;
 	}
