@@ -10,17 +10,9 @@ public:
 		add_point(B);
 	}
 
+	double get_area() override { return 0; }
 	
 	void accept(VisitorShape *V) const override { V->visitSegment(*this); }
-
-	operator std::string() const {
-		std::string res("Segment : ");
-		res += to_string_points();
-		res += ", Color : ";
-		res += to_string(color);
-
-		return res;
-	}
 };
 
 #endif //_SEGMENT_HPP_

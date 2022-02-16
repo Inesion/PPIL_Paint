@@ -2,6 +2,7 @@
 #define _CIRCLE_HPP_
 
 #include "Shape.hpp"
+#define PI 3.14159265358979323846
 
 class Circle : public Shape {
 private:
@@ -11,24 +12,13 @@ public:
 		add_point(centre);
 	}
 	
-	Vecteur2D get_center() const {
-		return point_list[0];
-	}
+	Vecteur2D get_center() const { return point_list[0]; }
+
+	double get_area() override { return PI * rayon * rayon; }
 
 	void accept(VisitorShape *V) const override { V->visitCircle(*this); }
 
-	std::ostream& serialize_custom_attributes(std::ostream& os) const { return os.write(reinterpret_cast<const char*>(&rayon), sizeof rayon); }
-	
-	operator std::string() const {
-		std::string res("Circle : ");
-		res += (std::string)get_center();
-		res += ", ";
-		res += to_string(rayon);
-		res += ", Color : ";
-		res += to_string(color);
-
-		return res;
-	}
+	const std::string serialize_custom_attributes() const override { return std::string(to_string(rayon)); }
 };
 
 #endif //_CIRCLE_HPP_

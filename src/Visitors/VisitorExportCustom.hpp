@@ -16,26 +16,26 @@ private:
 public:
 	VisitorExportCustom(const char *filename) {
 		out.open(filename, ios::out | ios::binary | ios::trunc);
-		description = "Exporting with custom binary format : ";
+		description = "Exporting to file : ";
 	}
 
 	~VisitorExportCustom() { out.close(); }
 
 	void visitCircle(const Circle& C) override {
 		std::cout << description << C << std::endl;
-		C.serialize(out);
+		out << C << std::endl;
 	}
 	void visitPolygon(const Polygon& P) override {
 		std::cout << description << P << std::endl;
-		P.serialize(out);
+		out << P << std::endl;
 	}
 	void visitSegment(const Segment& S) override {
 		std::cout << description << S << std::endl;
-		S.serialize(out);
+		out << S << std::endl;
 	}
 	void visitTriangle(const Triangle& T) override {
 		std::cout << description << T << std::endl;
-		T.serialize(out);
+		out << T << std::endl;
 	}
 };
 

@@ -11,10 +11,13 @@
 ? Repere sous quelle forme //2Coins, vecteur2d
 
 
-<> TODO <>
+<> TODO (aka roadmap) <>
 
 Ecrire fonction det
 Cleanup all functions name, stay consistent
+Écriture forme dans fichier
+	Refaire sérialisation, pas de binaire cette fois
+	Nettoyer code
 
 
 !! INFOS !!

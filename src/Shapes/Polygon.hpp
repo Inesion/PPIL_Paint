@@ -10,17 +10,6 @@ public:
 	Polygon(const std::vector<Vecteur2D> point_list, const Color C) : Shape('P', C, point_list) {}
 
 	void accept(VisitorShape *V) const override { V->visitPolygon(*this); }
-
-	operator std::string() const {
-		std::string res("Polygon : ");
-		res += to_string_points();
-		res += " Area : ";
-		res += to_string(get_area());
-		res += ", Color : ";
-		res += to_string(color);
-
-		return res;
-	}
 };
 
 #endif //_POLYGON_HPP_

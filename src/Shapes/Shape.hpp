@@ -2,12 +2,14 @@
 #define _SHAPE_HPP_
 
 #include "Utils/Vecteur2D.hpp"
+#include "Utils/Matrice2x2.hpp"
 #include "Visitors/VisitorShape.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
 #include <ostream>
 #include <fstream>
+#include <math.h>
 
 enum Color { BLACK, BLUE, RED, GREEN, YELLOW, CYAN };
 
@@ -19,77 +21,82 @@ protected:
 
 	void add_point(const Vecteur2D &P) { point_list.push_back(P); }
 
+	const Vecteur2D get_gravity_point() const
+	{
+		double x = 0;
+		double y = 0;
+
+		for (auto i : point_list) {
+			x += i.x;
+			y += i.y;
+		}
+
+		x = x / point_list.size();
+		y = y / point_list.size();
+
+		return Vecteur2D(x, y);
+	}
+
 public:
 	Shape(const char shape_prefix, const Color C) : color(C), shape_prefix(shape_prefix) {}
 	Shape(const char shape_prefix, const Color C, const std::vector<Vecteur2D> point_list) : point_list(point_list), color(C) {}
 	virtual ~Shape() {}
 
 	virtual void accept(VisitorShape *V) const = 0;
-	virtual operator std::string() const = 0;
 
 	Color get_color() const { return color; }
 	void set_color(const Color C) { color = C; }
 
-	int serialize(char buffer[]) const;
-	static Shape* deserialize(const char buffer[], const int size);
 
-	int serialize(std::ostream &os) const;	// dabord nb octet puis data
-	static Shape* deserialize(std::istream &is);
+	virtual double get_area()
+	{
+		Vecteur2D gravity_point = get_gravity_point();
+		double area = 0;
 
-
-	virtual double get_area() const {	//not good, must use other formula. Also find center of gravity, more complex but result less likely to suffer from imprecision
-		/*double SL1 = 0, SL2 = 0;
-		int i;
-
-		if (point_list.size() < 3)
-			return 0;
-
-		for (i = 0; i < point_list.size(); i++)
-			SL1 += point_list[i].x * point_list[i + 1].y;
+		for (auto& i : point_list)
+			i -= gravity_point;
 		
-		SL1 += point_list[i].x * point_list[0].y;
+		for (auto i = 0; i < point_list.size() - 1; i++)
+			area += abs(Matrice2x2::det(point_list[i], point_list[i + 1]));
 
-		SL2 += point_list[0].x * point_list[i].y;
+		area += abs(Matrice2x2::det(point_list.front(), point_list.back()));
 
-		for (i = point_list.size() - 1; i >= 0; i--)
-			SL2 += point_list[i].x * point_list[i - 1].y;
+		for (auto& i : point_list)
+			i += gravity_point;
 
-		return abs(SL1 - SL2);*/
-		return 0;
+		return area / 2;
 	}
 
 	std::string to_string_points() const {
 		std::string res;
 
-		for (auto i = 0; i < point_list.size() - 1; i++) {
-			res += (std::string)point_list[i];
+		for (auto i : point_list) {
+			res += (std::string)i;
 			res += " ";
 		}
-
-		res += (std::string)point_list.back();
 
 		return res;
 	}
 
-	std::ostream& serialize(std::ostream& os) const {
-		os.put(shape_prefix);
-		os.write(reinterpret_cast<const char*>(&color), sizeof color);
-		os.put(point_list.size());
+	operator std::string() const {
+		std::string res;
+		res += shape_prefix;
+		res += " "
+			+ to_string(color)
+			+ " "
+			+ to_string(point_list.size())
+			+ " "
+			+ to_string_points()
+			+ serialize_custom_attributes();
 
-		for (auto i = 0; i < point_list.size(); i++) {
-			os.write(reinterpret_cast<const char*>(&point_list[i]), sizeof point_list[i]);
-		}
-
-		serialize_custom_attributes(os);
-
-		return os;
+		return res;
 	}
 
-	virtual std::ostream& serialize_custom_attributes(std::ostream& os) const { return os; }
+	virtual const std::string serialize_custom_attributes() const { return std::string(); }
 };
 
-std::ostream& operator <<(std::ostream &os, const Shape &F) {
-	return os << (std::string)F;
+std::ostream& operator <<(std::ostream &os, const Shape &S) {
+	return os << (std::string)S;
 }
 
 #endif //_SHAPE_HPP_

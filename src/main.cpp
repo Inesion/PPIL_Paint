@@ -15,11 +15,21 @@ int main()
 
 	delete V;*/
 
-	VisitorShape* V = new VisitorExportCustom("C:\\Users\\toxic\\Desktop\\test.txt");
+	VisitorShape* V = new VisitorExportCustom("C:\\Users\\Inesion\\Desktop\\test.txt");
 
 	Circle C(Vecteur2D(1.125, 2.75), 4, Color::BLACK);
+	Triangle T(Vecteur2D(0, 2), Vecteur2D(3, 4), Vecteur2D(6, 0), Color::BLUE);
+	Segment S(Vecteur2D(1, 2), Vecteur2D(7, 10), Color::RED);
 
-	C.accept(V);
+	std::cout << C << std::endl;
+	std::cout << T << std::endl;
+	std::cout << S << std::endl;
+
+	std::cout << "Area of triangle (" << T << ") " << T.get_area() << std::endl;
+
+	//C.accept(V);
+	//T.accept(V);
+	//S.accept(V);
 
 	return 0;
 }

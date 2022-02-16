@@ -2,6 +2,9 @@
 
 ## Notes
 
+Finalement pas de format binaire, trop complexe de rendre ça utilisable facilement, on utilise juste des string (bonus, on gagne de la place avec les doubles, en moyenne 3-5 octets
+pour un double comparé à 8 octets fixe en binaire)
+
 ### Global struct for writing shapes
 
 	All other informations specific to certain shapes are appended after the global struct

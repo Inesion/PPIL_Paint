@@ -61,7 +61,17 @@ public:
 	 */
 	inline const double operator *(const Vecteur2D &A) const {
 		return x * A.x + y * A.y;
-	} 
+	}
+
+	Vecteur2D& operator+=(const Vecteur2D& V)
+	{
+		return *this = *this + V;
+	}
+
+	Vecteur2D& operator-=(const Vecteur2D& V)
+	{
+		return *this += -V;
+	}
 
 	/**
 	 * @brief Longueur au carré du Vecteur
@@ -76,6 +86,10 @@ public:
 	 * @return double 
 	 */
 	inline double longueur() const { return sqrt(longueur2()); }
+
+	static inline double det(const Vecteur2D& A, const Vecteur2D& B) { return A.x * B.y - A.y * B.x; }
+
+	inline double det(const Vecteur2D& A) { return x * A.y - y * A.x; }
 
 	operator std::string() const
 	{
@@ -94,18 +108,5 @@ inline ostream& operator << (ostream& os, const Vecteur2D& u)
 	os << (string)u;
 	return os;
 }
-
-// const Vecteur2D rotation(const Vecteur2D &V, const double rad, const Vecteur2D &invariant) {
-// 	Matrice2x2 R = Matrice2x2::creeRotation(rad);
-// 	return Vecteur2D(R * (V - invariant) + invariant);
-// }
-
-// const Vecteur2D homotetie(const Vecteur2D &V, const double k, const Vecteur2D &invariant) {
-// 	return Vecteur2D(k * V + (1 - k) * invariant);
-// }
-
-// const Vecteur2D translation(const Vecteur2D &V, const Vecteur2D &u) {
-// 	return Vecteur2D(V + u);
-// }
 
 #endif //_VECTEUR2D_HPP_

@@ -12,16 +12,6 @@ public:
 	}
 
 	void accept(VisitorShape *V) const override { V->visitTriangle(*this); }
-
-	operator std::string() const {
-		std::string res("Triangle : ");
-		res += to_string_points();
-		res += ", Color : ";
-		res += to_string(color);
-		res += "\n";
-
-		return res;
-	}
 };
 
 #endif //_TRIANGLE_HPP_

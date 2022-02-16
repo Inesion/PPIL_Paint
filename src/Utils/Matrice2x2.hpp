@@ -19,9 +19,15 @@ public:
 				  Vecteur2D(sinTheta, cosTheta));
 	}
 
-	inline const Vecteur2D operator * (const Vecteur2D& V) const { 
+	inline const Vecteur2D operator * (const Vecteur2D& V) const {
 		return Vecteur2D(ligneHaut * V, ligneBas * V);
 	}
+
+	inline double det() const {
+		return ligneHaut.x * ligneBas.y - ligneHaut.y * ligneBas.x;
+	}
+
+	static inline double det(const Vecteur2D& A, const Vecteur2D& B) { return A.x * B.y - A.y * B.x; }
 };
 
 

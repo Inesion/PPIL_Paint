@@ -6,6 +6,7 @@ add_executable(PPIL_Paint_client
 	Visitors/VisitorExportCustom.hpp
 	Utils/Matrice2x2.hpp
 	Utils/Vecteur2D.hpp
+	Utils/Transform.hpp
 	Shapes/Circle.hpp
 	Shapes/Polygon.hpp
 	Shapes/Segment.hpp
@@ -15,4 +16,4 @@ add_executable(PPIL_Paint_client
 	#Source
 	main.cpp
 	Utils/Vecteur2D.cpp
-)
+ )
