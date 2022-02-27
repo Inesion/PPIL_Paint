@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Visitors/VisitorExportCustom.hpp"
+#include "COR/CORImportCustom/ImporterCustom.hpp"
 
 using namespace std;
 
@@ -27,9 +28,9 @@ int main()
 
 	std::cout << "Area of triangle (" << T << ") " << T.get_area() << std::endl;
 
-	//C.accept(V);
-	//T.accept(V);
-	//S.accept(V);
+	C.accept(V);
+	T.accept(V);
+	S.accept(V);
 
 	return 0;
 }

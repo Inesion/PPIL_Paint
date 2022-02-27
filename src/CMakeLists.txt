@@ -12,8 +12,10 @@ add_executable(PPIL_Paint_client
 	Shapes/Segment.hpp
 	Shapes/Shape.hpp
 	Shapes/Triangle.hpp
+	COR/CORImportCustom/ImporterCustom.hpp
+	COR/CORImportCustom/ImporterCustomCircle.hpp
 
 	#Source
 	main.cpp
 	Utils/Vecteur2D.cpp
- )
+)

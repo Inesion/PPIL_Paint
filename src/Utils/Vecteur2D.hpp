@@ -63,12 +63,12 @@ public:
 		return x * A.x + y * A.y;
 	}
 
-	Vecteur2D& operator+=(const Vecteur2D& V)
+	const Vecteur2D& operator+=(const Vecteur2D& V)
 	{
 		return *this = *this + V;
 	}
 
-	Vecteur2D& operator-=(const Vecteur2D& V)
+	const Vecteur2D& operator-=(const Vecteur2D& V)
 	{
 		return *this += -V;
 	}

@@ -1,0 +1,7 @@
+#ifndef _IMPORTERCUSTOMTRIANGLE_HPP_
+#define _IMPORTERCUSTOMTRIANGLE_HPP_
+
+#include "ImporterCustom.hpp"
+
+
+#endif //_IMPORTERCUSTOMTRIANGLE_HPP_
