@@ -5,22 +5,17 @@
 
 class ImporterCustomCircle : public ImporterCustom {
 protected:
-	Shape* import(const char* line) const {
-		Color col;
+	Shape* import(const std::string& line) const {
+		const char* line_ptr = line.c_str();
 		double rayon;
-		char* token;
-		char delim[2] = " ";
-
-		token = strtok(line, delim);
-
-		if (token[0] == 'C') {
-			token = strtok(nullptr, delim);
-			col = atoi(token);
-			token = strtok(nullptr, delim) 
-		}
-		else {
+		
+		Shape* res = importBase(&line_ptr);
+		if (res->get_prefix() != 'C' || sscanf(line_ptr, "%lf", &rayon) != 1) {
+			delete res;
 			return nullptr;
-		}
+		}		
+
+		return new Circle(res, rayon);
 	}
 
 public:

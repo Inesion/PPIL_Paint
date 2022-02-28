@@ -8,8 +8,12 @@ class Circle : public Shape {
 private:
 	double rayon;
 public:
-	Circle(const Vecteur2D centre, const double rayon, const Color Col) : rayon(rayon), Shape('C', Col) {
+	Circle(const Vecteur2D& centre, const double rayon, const Color Col) : rayon(rayon), Shape('C', Col) {
 		add_point(centre);
+	}
+
+	Circle(const Shape& S, const double rayon) : rayon(rayon), Shape('C', S.get_color()) {
+		add_point(S.get_point_list[0]);
 	}
 	
 	Vecteur2D get_center() const { return point_list[0]; }

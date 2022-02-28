@@ -7,7 +7,9 @@ class Polygon : public Shape {
 public:
 	Polygon(const Color Col) : Shape('P', Col) {}
 	
-	Polygon(const std::vector<Vecteur2D> point_list, const Color C) : Shape('P', C, point_list) {}
+	Polygon(const std::vector<Vecteur2D>& point_list, const Color C) : Shape('P', C, point_list) {}
+
+	Polygon(const Shape& S) : Shape('P', S.get_color(), S.get_point_list()) {}
 
 	void accept(VisitorShape *V) const override { V->visitPolygon(*this); }
 };

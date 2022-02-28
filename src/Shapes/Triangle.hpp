@@ -5,11 +5,13 @@
 
 class Triangle : public Shape {
 public:
-	Triangle(Vecteur2D A, Vecteur2D B, Vecteur2D C, Color Col) : Shape('T', Col) {
+	Triangle(const Vecteur2D& A, const Vecteur2D& B, const Vecteur2D& C, Color Col) : Shape('T', Col) {
 		add_point(A);
 		add_point(B);
 		add_point(C);
 	}
+
+	Triangle(const Shape& S) : Shape('T', S.get_color(), S.get_point_list()) {}
 
 	void accept(VisitorShape *V) const override { V->visitTriangle(*this); }
 };

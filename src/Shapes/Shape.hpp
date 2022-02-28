@@ -39,14 +39,18 @@ protected:
 
 public:
 	Shape(const char shape_prefix, const Color C) : color(C), shape_prefix(shape_prefix) {}
-	Shape(const char shape_prefix, const Color C, const std::vector<Vecteur2D> point_list) : point_list(point_list), color(C) {}
+	Shape(const char shape_prefix, const Color C, const std::vector<Vecteur2D> &point_list) : point_list(point_list), color(C), shape_prefix(shape_prefix) {}
 	virtual ~Shape() {}
 
-	virtual void accept(VisitorShape *V) const = 0;
+	/* Fonction normalement virtuelle pure, mais besoin d'utiliser constructeur dans fonction importBase dans classe ImporterCustom
+	*  Accepte le visiteur V pour les COR
+	*/
+	virtual void accept(VisitorShape *V) const {};
 
-	Color get_color() const { return color; }
+	const Color get_color() const { return color; }
 	void set_color(const Color C) { color = C; }
-
+	const char get_prefix() const { return shape_prefix; }
+	const std::vector<Vecteur2D>& get_point_list() const { return point_list; }
 
 	virtual double get_area()
 	{
