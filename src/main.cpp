@@ -16,7 +16,7 @@ int main()
 
 	delete V;*/
 
-	VisitorShape* V = new VisitorExportCustom("C:\\Users\\Inesion\\Desktop\\test.txt");
+	VisitorShape* V = new VisitorExportCustom("C:\\Users\\toxic\\Desktop\\test.txt");
 
 	Circle C(Vecteur2D(1.125, 2.75), 4, Color::BLACK);
 	Triangle T(Vecteur2D(0, 2), Vecteur2D(3, 4), Vecteur2D(6, 0), Color::BLUE);

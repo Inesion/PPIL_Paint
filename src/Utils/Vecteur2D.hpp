@@ -91,6 +91,8 @@ public:
 
 	inline double det(const Vecteur2D& A) { return x * A.y - y * A.x; }
 
+	static const Vecteur2D* parseVector(const char* data);
+
 	operator std::string() const
 	{
 		std::ostringstream os;

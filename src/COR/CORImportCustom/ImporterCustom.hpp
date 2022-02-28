@@ -2,6 +2,7 @@
 #define _IMPORTERCUSTOM_HPP_
 
 #include "Shapes/Shape.hpp"
+#include <string.h>
 
 class ImporterCustom {
 private:
