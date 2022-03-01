@@ -22,7 +22,7 @@ public:
 
 	void accept(VisitorShape *V) const override { V->visitCircle(*this); }
 
-	const std::string serialize_custom_attributes() const override { return std::string(to_string(rayon)); }
+	const std::string to_string_custom_attributes() const override { return std::string(to_string(rayon)); }
 };
 
 #endif //_CIRCLE_HPP_
