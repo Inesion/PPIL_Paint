@@ -13,7 +13,7 @@ protected:
 		if (res->get_prefix() != 'C' || sscanf(line_ptr, "%lf", &rayon) != 1) {
 			delete res;
 			return nullptr;
-		}		
+		}
 
 		return new Circle(res, rayon);
 	}
