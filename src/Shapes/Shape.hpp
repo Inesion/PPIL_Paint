@@ -4,6 +4,7 @@
 #include "Utils/Vecteur2D.hpp"
 #include "Utils/Matrice2x2.hpp"
 #include "Visitors/VisitorShape.hpp"
+#include "Utils/Transform.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -95,6 +96,10 @@ public:
 			i += gravity_point;
 
 		return area / 2;
+	}
+
+	void rotation(const double rad, const Vecteur2D& invariant) {
+		
 	}
 
 	/**

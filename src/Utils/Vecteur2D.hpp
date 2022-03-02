@@ -8,6 +8,8 @@
 
 using namespace std;
 
+//class Matrice2x2;
+
 template <class T>
 inline const T operator - (const T& u, const T& v)
 {
