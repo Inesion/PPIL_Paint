@@ -98,21 +98,41 @@ public:
 		return area / 2;
 	}
 
+	/**
+	 * @brief Applique une rotation en fonction d'un angle rad et d'un point invariant sur tous
+	 * les points de la forme
+	 * @param rad 
+	 * @param invariant 
+	*/
 	void rotation_forme(const double rad, const Vecteur2D& invariant) {
 		for (auto& i : point_list)
 			i = rotation(i, rad, invariant);
 	}
 
+	/**
+	 * @brief Applique une homotetie sur tous les points de la forme
+	 * @param k 
+	 * @param invariant 
+	*/
 	void homotetie_forme(const double k, const Vecteur2D& invariant) {
 		for (auto& i : point_list)
 			i = homotetie(i, k, invariant);
 	}
 
+	/**
+	 * @brief Applique une translation par rapport à u sur tous les points de la forme
+	 * @param u 
+	*/
 	void translation_forme(const Vecteur2D& u) {
 		for (auto& i : point_list)
 			i = translation(i, u);
 	}
 
+	/**
+	 * @brief Opérateur : Retourne le point à l'indice i
+	 * @param i 
+	 * @return
+	*/
 	const Vecteur2D& operator[] (unsigned int i) const { return point_list[i]; }
 
 	/**
