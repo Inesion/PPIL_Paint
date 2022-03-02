@@ -5,7 +5,7 @@
 
 class Segment : public Shape {
 public:
-	Segment(const Vecteur2D& A, const Vecteur2D& B, const Color Col) : Shape('S', Col) {
+	Segment(const Vecteur2D& A, const Vecteur2D& B, const int32_t Col) : Shape('S', Col) {
 		add_point(A);
 		add_point(B);
 	}

@@ -12,14 +12,12 @@
 #include <fstream>
 #include <math.h>
 
-enum Color { BLACK, BLUE, RED, GREEN, YELLOW, CYAN };
-
 class Shape {
 protected:
 	/**
-	 * @brief Couleur enum
+	 * @brief Couleur RGBA
 	*/
-	Color color;
+	int32_t color;
 
 	/**
 	 * @brief Vecteur représentant la liste des points de la forme
@@ -58,8 +56,10 @@ protected:
 	}
 
 public:
-	Shape(const char shape_prefix, const Color C) : color(C), shape_prefix(shape_prefix) {}
-	Shape(const char shape_prefix, const Color C, const std::vector<Vecteur2D> &point_list) : point_list(point_list), color(C), shape_prefix(shape_prefix) {}
+	Shape(const char shape_prefix, const int32_t C) : color(C), shape_prefix(shape_prefix) {}
+	Shape(const char shape_prefix) : color(0), shape_prefix(shape_prefix) {}
+	Shape(const char shape_prefix, const int32_t C, const std::vector<Vecteur2D>& point_list) : point_list(point_list), color(C), shape_prefix(shape_prefix) {}
+	Shape(const char shape_prefix, const std::vector<Vecteur2D>& point_list) : point_list(point_list), color(0), shape_prefix(shape_prefix) {}
 	virtual ~Shape() {}
 
 	/**
@@ -70,8 +70,8 @@ public:
 	*/
 	virtual void accept(VisitorShape *V) const {};
 
-	const Color get_color() const { return color; }
-	void set_color(const Color& C) { color = C; }
+	const int32_t get_color() const { return color; }
+	void set_color(const int32_t& C) { color = C; }
 	const char get_prefix() const { return shape_prefix; }
 	const std::vector<Vecteur2D>& get_point_list() const { return point_list; }
 
@@ -102,9 +102,44 @@ public:
 		
 	}
 
+	const Vecteur2D& operator[] (unsigned int i) const { return point_list[i]; }
+
+	/**
+	 * @brief Opérateur : Retourne la forme dans une string
+	*/
+	operator std::string() const {
+		std::ostringstream res;
+		res << shape_prefix;
+		res << " "
+			<< to_string_color()
+			<< " "
+			<< to_string(point_list.size())
+			<< " "
+			<< to_string_points()
+			<< to_string_custom_attributes();
+
+		return res.str();
+	}
+
+	/**
+	 * @brief Retourne le code RGB en string
+	 * @return
+	*/
+	std::string to_string_color() const {
+		std::ostringstream res;
+
+		res << +((uint8_t)(color >> 24));
+		res << " ";
+		res << +((uint8_t)(color >> 16));
+		res << " ";
+		res << +((uint8_t)(color >> 8));
+
+		return res.str();
+	}
+
 	/**
 	 * @brief Retourne la liste de points dans une string
-	 * @return 
+	 * @return
 	*/
 	std::string to_string_points() const {
 		std::string res;
@@ -113,23 +148,6 @@ public:
 			res += (std::string)i;
 			res += " ";
 		}
-
-		return res;
-	}
-
-	/**
-	 * @brief Opérateur : Retourne la forme dans une string
-	*/
-	operator std::string() const {
-		std::string res;
-		res += shape_prefix;
-		res += " "
-			+ to_string(color)
-			+ " "
-			+ to_string(point_list.size())
-			+ " "
-			+ to_string_points()
-			+ to_string_custom_attributes();
 
 		return res;
 	}

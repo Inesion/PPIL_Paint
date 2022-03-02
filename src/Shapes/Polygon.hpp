@@ -5,9 +5,9 @@
 
 class Polygon : public Shape {
 public:
-	Polygon(const Color Col) : Shape('P', Col) {}
+	Polygon(const int32_t Col) : Shape('P', Col) {}
 	
-	Polygon(const std::vector<Vecteur2D>& point_list, const Color C) : Shape('P', C, point_list) {}
+	Polygon(const std::vector<Vecteur2D>& point_list, const int32_t C) : Shape('P', C, point_list) {}
 
 	Polygon(const Shape& S) : Shape('P', S.get_color(), S.get_point_list()) {}
 

@@ -5,7 +5,7 @@
 
 class Triangle : public Shape {
 public:
-	Triangle(const Vecteur2D& A, const Vecteur2D& B, const Vecteur2D& C, Color Col) : Shape('T', Col) {
+	Triangle(const Vecteur2D& A, const Vecteur2D& B, const Vecteur2D& C, int32_t Col) : Shape('T', Col) {
 		add_point(A);
 		add_point(B);
 		add_point(C);

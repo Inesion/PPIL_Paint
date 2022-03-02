@@ -18,9 +18,9 @@ int main()
 
 	VisitorShape* V = new VisitorExportCustom("C:\\Users\\toxic\\Desktop\\test.txt");
 
-	Circle C(Vecteur2D(1.125, 2.75), 4, Color::BLACK);
-	Triangle T(Vecteur2D(0, 2), Vecteur2D(3, 4), Vecteur2D(6, 0), Color::BLUE);
-	Segment S(Vecteur2D(1, 2), Vecteur2D(7, 10), Color::RED);
+	Circle C(Vecteur2D(1.125, 2.75), 4, 0xFFFF2400);
+	Triangle T(Vecteur2D(0, 2), Vecteur2D(3, 4), Vecteur2D(6, 0), 0xFFFF2400);
+	Segment S(Vecteur2D(1, 2), Vecteur2D(7, 10), 0xFFFF2400);
 
 	std::cout << C << std::endl;
 	std::cout << T << std::endl;

@@ -13,13 +13,14 @@ protected:
 
 	static Shape* importBase(const char** line_ptr) {
 		char prefix;
-		Color color;
+		int32_t color;
 		int nb_points;
 		unsigned int offset;
 		std::vector<Vecteur2D> point_list;
 		double tmp_x, tmp_y;
+		char r, g, b;
 		
-		if (sscanf(*line_ptr, "%c %c %d %n", &prefix, &color, &nb_points, &offset) != 3)
+		if (sscanf(*line_ptr, "%c %hhd %hhd %hhd %d %n", &prefix, &r, &g, &b, &nb_points, &offset) != 5)
 			return nullptr;
 
 		*line_ptr += offset;
@@ -30,6 +31,13 @@ protected:
 
 			*line_ptr += offset;
 		}
+
+		color = r;
+		color <<= 8;
+		color = color + g;
+		color <<= 8;
+		color = color + b;
+		color <<= 16;
 
 		return new Shape(prefix, color, point_list);
 	}
