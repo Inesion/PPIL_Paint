@@ -4,7 +4,7 @@
 #include "Utils/Vecteur2D.hpp"
 #include "Utils/Matrice2x2.hpp"
 #include "Visitors/VisitorShape.hpp"
-#include "Utils/Transform.hpp"
+#include "../Utils/Transform.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -98,8 +98,19 @@ public:
 		return area / 2;
 	}
 
-	void rotation(const double rad, const Vecteur2D& invariant) {
-		
+	void rotation_forme(const double rad, const Vecteur2D& invariant) {
+		for (auto& i : point_list)
+			i = rotation(i, rad, invariant);
+	}
+
+	void homotetie_forme(const double k, const Vecteur2D& invariant) {
+		for (auto& i : point_list)
+			i = homotetie(i, k, invariant);
+	}
+
+	void translation_forme(const Vecteur2D& u) {
+		for (auto& i : point_list)
+			i = translation(i, u);
 	}
 
 	const Vecteur2D& operator[] (unsigned int i) const { return point_list[i]; }
