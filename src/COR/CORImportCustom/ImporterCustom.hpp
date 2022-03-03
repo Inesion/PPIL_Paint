@@ -29,21 +29,26 @@ protected:
 			if (sscanf(*line_ptr, "(%lf, %lf) %n", &tmp_x, &tmp_y, &offset) != 2)
 				return nullptr;
 
+			point_list.push_back(Vecteur2D(tmp_x, tmp_y));
+
 			*line_ptr += offset;
 		}
 
-		color = r;
-		color <<= 8;
-		color = color + g;
-		color <<= 8;
-		color = color + b;
-		color <<= 16;
+		color = (unsigned char)(r) << 24 |
+			(unsigned char)(g) << 16 |
+			(unsigned char)(b) << 8;
 
 		return new Shape(prefix, color, point_list);
 	}
 
 public:
-	ImporterCustom(ImporterCustom *next) : next(next) {}
+	ImporterCustom() : next(nullptr) {}
+
+	ImporterCustom* set_next(ImporterCustom* next) {
+		this->next = next;
+
+		return this->next;
+	}
 
 	virtual const Shape* importShape(const std::string& line) const {
 		Shape* res;
@@ -54,7 +59,7 @@ public:
 		}
 		else {
 			if (this->next != nullptr)
-				return this->next->import(line);
+				return this->next->importShape(line);
 			else
 				return nullptr;
 		}

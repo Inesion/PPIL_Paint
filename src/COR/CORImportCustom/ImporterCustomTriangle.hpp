@@ -8,17 +8,14 @@ protected:
 	Shape* import(const std::string& line) const {
 		const char* line_ptr = line.c_str();
 
+		if (line[0] != 'T') return nullptr;
+
 		Shape* res = importBase(&line_ptr);
-		if (res->get_prefix() != 'S') {
-			delete res;
-			return nullptr;
-		}
 
-		return new Triangle(res);
+		if (res == nullptr) return nullptr;
+
+		return new Triangle(*res);
 	}
-
-public:
-	ImporterCustomTriangle(ImporterCustom* next) : ImporterCustom(next) {}
 };
 
 #endif //_IMPORTERCUSTOMTRIANGLE_HPP_
