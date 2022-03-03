@@ -6,6 +6,7 @@
 #include "Shapes/Triangle.hpp"
 #include "Shapes/Segment.hpp"
 #include "Shapes/Polygon.hpp"
+#include "Shapes/Group.hpp"
 #include <fstream>
 
 
@@ -36,6 +37,10 @@ public:
 	void visitTriangle(const Triangle& T) override {
 		std::cout << description << T << std::endl;
 		out << T << std::endl;
+	}
+	void visitGroup(const Group& G) override {
+		std::cout << description << G << std::endl;
+		out << G << std::endl;
 	}
 };
 

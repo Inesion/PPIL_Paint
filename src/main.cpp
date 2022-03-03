@@ -27,12 +27,22 @@ int main()
 	Circle C(Vecteur2D(1.125, 2.75), 4, 0x12FF5600);
 	Triangle T(Vecteur2D(0, 2), Vecteur2D(3, 4), Vecteur2D(6, 0), 0xFFFF2400);
 	Segment S(Vecteur2D(1, 2), Vecteur2D(7, 10), 0xFFFF2400);
+	Group G(0xFF00FF00);
+
+	G.shape_list.push_back(&C);
+	G.shape_list.push_back(&T);
+	G.shape_list.push_back(&S);
+
+	std::cout << "Area of all 3 shapes : " << G.get_area() << std::endl;
+	std::cout << G << std::endl;
+
+	G.translation(Vecteur2D(1, 2));
+
+	std::cout << G << std::endl;
 
 	std::cout << C << std::endl;
 	std::cout << T << std::endl;
 	std::cout << S << std::endl;
-
-	std::cout << "Area of triangle (" << T << ") " << T.get_area() << std::endl;
 
 	C.accept(V);
 	T.accept(V);

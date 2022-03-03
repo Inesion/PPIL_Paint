@@ -7,6 +7,7 @@ class Circle;
 class Polygon;
 class Segment;
 class Triangle;
+class Group;
 
 class VisitorShape {
 protected:
@@ -17,6 +18,7 @@ public:
 	virtual void visitPolygon(const Polygon &P) = 0;
 	virtual void visitSegment(const Segment &S) = 0;
 	virtual void visitTriangle(const Triangle &T) = 0;
+	virtual void visitGroup(const Group &G) = 0;
 };
 
 #endif //_VISITORSHAPE_HPP_

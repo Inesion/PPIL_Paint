@@ -4,7 +4,6 @@
 #include "Utils/Vecteur2D.hpp"
 #include "Utils/Matrice2x2.hpp"
 #include "Visitors/VisitorShape.hpp"
-#include "../Utils/Transform.hpp"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -104,9 +103,9 @@ public:
 	 * @param rad 
 	 * @param invariant 
 	*/
-	void rotation_forme(const double rad, const Vecteur2D& invariant) {
+	virtual void rotation(const double rad, const Vecteur2D& invariant) {
 		for (auto& i : point_list)
-			i = rotation(i, rad, invariant);
+			i.rotation(rad, invariant);
 	}
 
 	/**
@@ -114,18 +113,18 @@ public:
 	 * @param k 
 	 * @param invariant 
 	*/
-	void homotetie_forme(const double k, const Vecteur2D& invariant) {
+	virtual void homotetie(const double k, const Vecteur2D& invariant) {
 		for (auto& i : point_list)
-			i = homotetie(i, k, invariant);
+			i.homotetie(k, invariant);
 	}
 
 	/**
 	 * @brief Applique une translation par rapport à u sur tous les points de la forme
 	 * @param u 
 	*/
-	void translation_forme(const Vecteur2D& u) {
+	virtual void translation(const Vecteur2D& u) {
 		for (auto& i : point_list)
-			i = translation(i, u);
+			i.translation(u);
 	}
 
 	/**
@@ -138,7 +137,7 @@ public:
 	/**
 	 * @brief Opérateur : Retourne la forme dans une string
 	*/
-	operator std::string() const {
+	virtual operator std::string() const {
 		std::ostringstream res;
 		res << shape_prefix;
 		res << " "

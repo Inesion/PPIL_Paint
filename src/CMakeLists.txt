@@ -6,14 +6,18 @@ add_executable(PPIL_Paint_client
 	Visitors/VisitorExportCustom.hpp
 	Utils/Matrice2x2.hpp
 	Utils/Vecteur2D.hpp
-	Utils/Transform.hpp
 	Shapes/Circle.hpp
 	Shapes/Polygon.hpp
 	Shapes/Segment.hpp
 	Shapes/Shape.hpp
 	Shapes/Triangle.hpp
+	Shapes/Group.hpp
 	COR/CORImportCustom/ImporterCustom.hpp
 	COR/CORImportCustom/ImporterCustomCircle.hpp
+	COR/CORImportCustom/ImporterCustomPolygon.hpp
+	COR/CORImportCustom/ImporterCustomTriangle.hpp
+	COR/CORImportCustom/ImporterCustomSegment.hpp
+	COR/CORImportCustom/ImporterCustomGroup.hpp
 
 	#Source
 	main.cpp

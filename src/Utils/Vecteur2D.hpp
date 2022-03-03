@@ -130,7 +130,18 @@ public:
 	 * @param data 
 	 * @return 
 	*/
-	static const Vecteur2D* parseVector(const char* data);
+	static const Vecteur2D* parseVector(const char* data) {
+		double x, y;
+
+		if (sscanf(data + 1, "(%lf, %lf)", &x, &y) == 2)
+			return new Vecteur2D(x, y);
+
+		return nullptr;
+	}
+
+	const void rotation(const double rad, const Vecteur2D& invariant);
+	const void homotetie(const double k, const Vecteur2D& invariant);
+	const void translation(const Vecteur2D& u);
 
 	/**
 	 * @brief Opérateur : to_string

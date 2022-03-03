@@ -6,6 +6,7 @@
 #include "Shapes/Triangle.hpp"
 #include "Shapes/Segment.hpp"
 #include "Shapes/Polygon.hpp"
+#include "Shapes/Group.hpp"
 #include <iostream>
 
 
@@ -24,6 +25,12 @@ public:
 	}
 	void visitTriangle(const Triangle &T) override {
 		std::cout << description << T << std::endl;
+	}
+	void visitGroup(const Group& G) override {
+		std::cout << description;
+
+		for (auto i : G.shape_list)
+			std::cout << i << "\n";
 	}
 };
 
