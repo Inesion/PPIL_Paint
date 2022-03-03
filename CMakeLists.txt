@@ -4,6 +4,7 @@ project(PPIL_Paint VERSION 1.0)
 
 if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_definitions(-D_WINSOCK_DEPRECATED_NO_WARNINGS)
 endif()
 
 add_subdirectory(src)

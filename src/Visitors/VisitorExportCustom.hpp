@@ -5,7 +5,7 @@
 #include "Shapes/Circle.hpp"
 #include "Shapes/Triangle.hpp"
 #include "Shapes/Segment.hpp"
-#include "Shapes/Polygon.hpp"
+#include "Shapes/Polygone.hpp"
 #include "Shapes/Group.hpp"
 #include <fstream>
 
@@ -26,7 +26,7 @@ public:
 		std::cout << description << C << std::endl;
 		out << C << std::endl;
 	}
-	void visitPolygon(const Polygon& P) override {
+	void visitPolygone(const Polygone& P) override {
 		std::cout << description << P << std::endl;
 		out << P << std::endl;
 	}

@@ -4,7 +4,7 @@
 #include <string>
 
 class Circle;
-class Polygon;
+class Polygone;
 class Segment;
 class Triangle;
 class Group;
@@ -15,7 +15,7 @@ protected:
 
 public:
 	virtual void visitCircle(const Circle &C) = 0;
-	virtual void visitPolygon(const Polygon &P) = 0;
+	virtual void visitPolygone(const Polygone &P) = 0;
 	virtual void visitSegment(const Segment &S) = 0;
 	virtual void visitTriangle(const Triangle &T) = 0;
 	virtual void visitGroup(const Group &G) = 0;

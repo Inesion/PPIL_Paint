@@ -4,24 +4,15 @@
 #include "Visitors/VisitorExportCustom.hpp"
 #include "COR/CORImportCustom/ImporterCustom.hpp"
 #include "COR/CORImportCustom/ImporterCustomCircle.hpp"
-#include "COR/CORImportCustom/ImporterCustomPolygon.hpp"
+#include "COR/CORImportCustom/ImporterCustomPolygone.hpp"
 #include "COR/CORImportCustom/ImporterCustomSegment.hpp"
 #include "COR/CORImportCustom/ImporterCustomTriangle.hpp"
+#include "Visitors/VisitorDrawNetwork.hpp"
 
 using namespace std;
 
 int main()
 {
-	/*VisitorDrawNetwork* V = new VisitorDrawNetwork();
-	std::vector<Vecteur2D> L = {Vecteur2D(2,4), Vecteur2D(3,-8), Vecteur2D(1,2)};
-	Polygon F(L, Color::BLACK);
-
-	cout << (string)F << endl;
-
-	F.accept(V);
-
-	delete V;*/
-
 	VisitorShape* V = new VisitorExportCustom("C:\\Users\\toxic\\Desktop\\test.txt");
 
 	Circle C(Vecteur2D(1.125, 2.75), 4, 0x12FF5600);
@@ -49,7 +40,7 @@ int main()
 	S.accept(V);
 
 	ImporterCustomCircle imp_circle;
-	ImporterCustomPolygon imp_polygon;
+	ImporterCustomPolygone imp_polygon;
 	ImporterCustomSegment imp_segment;
 	ImporterCustomTriangle imp_triangle;
 

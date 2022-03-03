@@ -1,9 +1,9 @@
-#ifndef _IMPORTERCUSTOMPOLYGON_HPP_
-#define _IMPORTERCUSTOMPOLYGON_HPP_
+#ifndef _IMPORTERCUSTOMPOLYGONE_HPP_
+#define _IMPORTERCUSTOMPOLYGONE_HPP_
 
 #include "ImporterCustom.hpp"
 
-class ImporterCustomPolygon : public ImporterCustom {
+class ImporterCustomPolygone : public ImporterCustom {
 protected:
 	Shape* import(const std::string& line) const {
 		const char* line_ptr = line.c_str();
@@ -14,9 +14,9 @@ protected:
 
 		if (res == nullptr) return nullptr;
 
-		return new Polygon(*res);
+		return new Polygone(*res);
 	}
 };
 
 
-#endif //_IMPORTERCUSTOMPOLYGON_HPP_
+#endif //_IMPORTERCUSTOMPOLYGONE_HPP_
