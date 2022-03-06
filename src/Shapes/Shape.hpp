@@ -55,6 +55,8 @@ protected:
 	}
 
 public:
+	bool is_in_group = false;
+
 	Shape(const char shape_prefix, const int32_t C) : color(C), shape_prefix(shape_prefix) {}
 	Shape(const char shape_prefix) : color(0), shape_prefix(shape_prefix) {}
 	Shape(const char shape_prefix, const int32_t C, const std::vector<Vecteur2D>& point_list) : point_list(point_list), color(C), shape_prefix(shape_prefix) {}

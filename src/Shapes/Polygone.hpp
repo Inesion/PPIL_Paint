@@ -12,6 +12,8 @@ public:
 	Polygone(const Shape& S) : Shape('P', S.get_color(), S.get_point_list()) {}
 
 	void accept(VisitorShape *V) const override { V->visitPolygone(*this); }
+
+	using Shape::add_point;
 };
 
 #endif //_POLYGON_HPP_
