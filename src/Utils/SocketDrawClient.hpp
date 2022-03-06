@@ -1,6 +1,8 @@
 #ifndef _SOCKETDRAWCLIENT_HPP_
 #define _SOCKETDRAWCLIENT_HPP_
 
+#pragma comment(lib, "Ws2_32.lib")
+
 #include <winsock2.h>
 #include <stdexcept>
 
@@ -46,9 +48,15 @@ public:
 	}
 
 	void send_data(SOCKET socket, const char* data) {
-		if (send(socket, data, strlen(data), 0) < 0)
+		uint32_t n_byte = send(socket, data, strlen(data), 0);
+
+		if (n_byte < 0)
 			throw std::runtime_error("Error whilst trying to send data to socket");
+
+		std::cout << "Number of bytes sent from socket : " << n_byte << std::endl;
 	}
+
+	void close_sock(SOCKET sock) { closesocket(sock); }
 };
 
 #endif //_SOCKETDRAWCLIENT_HPP_

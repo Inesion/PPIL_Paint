@@ -15,8 +15,8 @@ int main()
 {
 	VisitorShape* V = new VisitorExportCustom("C:\\Users\\toxic\\Desktop\\test.txt");
 
-	Circle C(Vecteur2D(1.125, 2.75), 4, 0x12FF5600);
-	Triangle T(Vecteur2D(0, 2), Vecteur2D(3, 4), Vecteur2D(6, 0), 0xFFFF2400);
+	Circle C(Vecteur2D(200, 200), 14, 0x0000FF00);
+	Triangle T(Vecteur2D(0, 20), Vecteur2D(300, 400), Vecteur2D(600, 0), 0xFFFF2400);
 	Segment S(Vecteur2D(1, 2), Vecteur2D(7, 10), 0xFFFF2400);
 	Group G(0xFF00FF00);
 
@@ -39,7 +39,7 @@ int main()
 	T.accept(V);
 	S.accept(V);
 
-	ImporterCustomCircle imp_circle;
+	/*ImporterCustomCircle imp_circle;
 	ImporterCustomPolygone imp_polygon;
 	ImporterCustomSegment imp_segment;
 	ImporterCustomTriangle imp_triangle;
@@ -57,7 +57,13 @@ int main()
 			std::cout << *oui << std::endl;
 		else
 			std::cout << "Man fuck this shit im jerking off" << std::endl;
-	}
+	}*/
+
+	WindowProperties W("Test", 0, 0, 600, 800);
+	std::cout << (std::string)W << std::endl;
+	VisitorDrawNetwork test("127.0.0.1", 9001, W);
+	C.accept(&test);
+	test.send_draw_command();
 
 	return 0;
 }

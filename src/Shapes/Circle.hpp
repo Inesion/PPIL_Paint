@@ -18,6 +18,11 @@ public:
 
 	double get_area() override { return PI * rayon * rayon; }
 
+	void homotetie(const double k, const Vecteur2D& invariant) {
+		point_list[0].homotetie(k, invariant);
+		rayon = rayon * k;
+	}
+
 	void accept(VisitorShape *V) const override { V->visitCircle(*this); }
 
 	const std::string to_string_custom_attributes() const override { return std::string(to_string(rayon)); }

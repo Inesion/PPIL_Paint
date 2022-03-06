@@ -2,6 +2,8 @@
 #define _VISITORDRAWNETWORK_HPP_
 
 #include "Utils/SocketDrawClient.hpp"
+#include "Utils/Erreur.hpp"
+#include "Utils/WindowProperties.hpp"
 #include "VisitorShape.hpp"
 #include "Shapes/Circle.hpp"
 #include "Shapes/Triangle.hpp"
@@ -9,19 +11,27 @@
 #include "Shapes/Polygone.hpp"
 #include "Shapes/Group.hpp"
 #include <iostream>
+#include <stdexcept>
 
 class VisitorDrawNetwork : public VisitorShape {
 private:
 	SOCKET sock;
 	std::string data;
 public:
-	VisitorDrawNetwork(const std::string& host, const int port) { 
+	VisitorDrawNetwork(const std::string& host, const int port, const WindowProperties &W) { 
 		description = "Drawing over the network : ";
 		sock = SocketDrawClient::get_instance().create_socket(host.c_str(), port);
+
+		data += (std::string)W;
+
+		send_draw_command();
 	}
 
-	void send_draw_command() const {
+	~VisitorDrawNetwork() { SocketDrawClient::get_instance().close_sock(sock); }
+
+	void send_draw_command() {
 		SocketDrawClient::get_instance().send_data(sock, data.c_str());
+		data.clear();
 	}
 	
 	void visitCircle(const Circle &C) override {

@@ -6,6 +6,8 @@ add_executable(PPIL_Paint_client
 	Utils/Matrice2x2.hpp
 	Utils/Vecteur2D.hpp
 	Utils/SocketDrawClient.hpp
+	Utils/Erreur.hpp
+	Utils/WindowProperties.hpp
 	Shapes/Circle.hpp
 	Shapes/Polygone.hpp
 	Shapes/Segment.hpp
